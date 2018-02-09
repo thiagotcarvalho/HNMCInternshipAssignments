@@ -1,0 +1,124 @@
+/* WHOLE PAGE */
+#container {
+	width: 97%;
+	margin: 20px auto;
+	border: 1px solid black;
+}
+/* WHOLE PAGE END */
+
+
+
+/* HEADER SECTION */
+header {
+	margin: 10px; 
+	border: 1px solid black;
+	padding: 10px;
+	background-color: lightblue;
+}
+
+#header-company {
+	text-align: center;
+	float: left;
+	/*border: 1px solid black;*/
+}
+
+#header-datetime {
+	text-align: center;
+	float: right;
+	/*border: 1px solid black;*/
+}
+
+#header-pagename {
+	text-align: center;
+	overflow: hidden;
+	padding: 20px;
+	/*border: 1px solid black;*/
+}
+
+.title {
+	display: inline;
+	padding: 10px;
+	font-size: 42px;
+	border: 2px solid black;
+	border-radius: 5px;
+	background-color: darkblue;
+	color: white;
+}
+/* HEADER SECTION END */
+
+
+
+/* CONTENT SECTION */
+/*main {border: 1px solid black;}*/
+
+.row {
+	display: block;
+	float: left;
+	clear: both;
+	width: 98%;
+	padding: 10px;
+	font-size: 20px;
+
+	/*border: 1px solid red;*/
+}
+
+.col {
+	display: inline-block;
+	float:left;
+	/*clear:left;*/
+	font-size: 20px;
+
+	/*background: tomato;
+	border: 2px solid yellow;*/
+}
+
+.half {
+	width: 40%;
+}
+
+.space {
+	width: 50%;
+}
+
+.caption {
+	display: inline-block;
+	/*border: 2px solid black;*/
+	background-color: darkblue;
+	color: white;
+	font-size: 20x;
+	width: 105px;
+	padding: 3px;
+	text-align: center;
+	border-radius: 5px;
+}
+
+#override.caption{
+	display: block;
+	/*margin: 10px;*/
+	text-align: center;
+	width: 100%;
+	font-size: 20px;
+}
+
+table {
+	border-collapse: collapse;
+	border-spacing: 10px;
+	border: 2px solid black;
+}
+
+th, td {
+	border: 1px solid black;
+}
+/* CONTENT SECTION END */
+
+
+
+/* FOOTER SECTION */
+footer {
+	margin: 10px;
+}
+
+#small {
+	text-align: center;
+}
+/* FOOTER SECTION END */
