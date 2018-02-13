@@ -1,6 +1,7 @@
 <?php
 	require 'C:\xampp\htdocs\thiago\hnmc_assignments\2018-02-01\php_tasks\patientData.php'
 ?>
+
 <!DOCTYPE html>
 <html>
 	<head>
@@ -26,9 +27,12 @@
 			<main>
 				<!-- <div class="row"> -->
 
+					<?php
+						foreach ($patientArray as $patientInfo) {
+					?>
 					<!-- Top Half of Form -->
 					<div class="row">
-						<div class="caption">NAME:</div> John Smith
+						<div class="caption">NAME:</div> <?php print_r($patientInfo['firstName'].' '.$patientInfo['lastName']); ?>
 					</div>
 					<div class="row">
 						<div class="caption">ADDRESS:</div> 718 Main Street, Teaneck, NJ
@@ -45,7 +49,9 @@
 						<div class="caption">MEDICAL RECORD #:</div> 123-456-789
 					</div>
 					<!-- Top Half of Form End -->
+					<?php } ?>
 
+					<!-- Loop through array to retrieve Treatment information -->
 					<?php
 						foreach ($patientArray['Patient']['Treatments'] as $treatmentName) {?>
 							<!-- Bottom Half of Form -->
@@ -81,12 +87,6 @@
 								</div>
 								<!-- End Blank Column -->
 
-								<?php
-									foreach ($treatmentName['Payments'] as $paymentNum) {
-										echo "<pre>";
-										print_r($paymentNum);
-									}
-								?>
 								<!-- Table with Treatment Info -->
 								<table class="half">
 									<tr>
@@ -97,26 +97,29 @@
 										<th>Amount</th>
 										<th>Balance</th>
 									</tr>
-									<tr>
-										<td><?php print_r($paymentNum['paymentDate']) ?></td>
-										<td>$200.00</td>
-										<td>$1000.00</td>
-									</tr>
-									<tr>
-										<td>01/16/2018</td>
-										<td>$600.00</td>
-										<td>$400.00</td>
-									</tr>
-									<tr>
-										<td>01/20/2018</td>
-										<td>$400.00</td>
-										<td>$0.00</td>
-									</tr>
+
+									<!-- Loop through array to retrieve Payment information -->
+									<?php
+										$tempArray['amountPaid'] = 0;
+
+										foreach ($treatmentName['Payments'] as $paymentNum) {
+											$tempArray['amountPaid'] += $paymentNum['amount'];
+
+											$tempArray['remainingBalance'] = $treatmentName['treatmentCost'] - $tempArray['amountPaid'];
+									?>
+											<tr>
+												<td><?php print_r($paymentNum['paymentDate']) ?></td>
+												<td class="currency">$<?php print_r($paymentNum['amount']) ?>.00</td>
+												<td class="currency">$<?php print_r($tempArray['remainingBalance']) ?>.00</td>
+											</tr>
+										<?php } ?>
+										<!-- End Payment Loop -->
 								</table>
 								<!-- Table with Treatment Info -->
 							</div>
 							<!-- Bottom Half of Form End -->
 						<?php } ?>
+						<!-- End Treatment Loop -->
 
 				<!-- </div> -->
 			</main>
