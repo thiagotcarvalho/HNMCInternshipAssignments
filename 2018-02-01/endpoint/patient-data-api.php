@@ -1,4 +1,5 @@
 <?php
+header("Access-Control-Allow-Origin: *");
 require 'C:\xampp\htdocs\thiago\hnmc_assignments\2018-02-01\endpoint\patient-data.source.php';
 
 /* Looping through Array */
