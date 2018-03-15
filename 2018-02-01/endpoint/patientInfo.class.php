@@ -43,7 +43,7 @@ class patientInfo
 					];
 	    	}// End of Loop
 
-	    	$this->processedData = $patientArray;
+	    	$this->processedData = json_encode($patientArray);
     	}
     }
 
@@ -60,5 +60,8 @@ $newPatient = new patientInfo();
 $newPatient->setSourceData($UnknownTable);
 $newPatient->doProcessData();
 
-echo "<pre>";
-print_r($newPatient->getProcessedData());
+// echo "<pre>";
+// print_r($newPatient->getProcessedData());
+
+// header("Content-Type: application/json; charset=UTF-8");
+echo $newPatient->getProcessedData();
