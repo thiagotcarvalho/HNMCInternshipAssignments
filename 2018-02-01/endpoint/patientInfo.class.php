@@ -42,15 +42,26 @@ class patientInfo
 						'amount' => $patientInfo['paymentAmount']
 					];
 	    	}// End of Loop
-
-	    	$this->processedData = json_encode($patientArray);
+	    	// $this->processedData = json_encode($patientArray);
+	    	$this->processedData = $patientArray;
     	}
     }
 
     // Returns the organized data
     public function getProcessedData()
     {
-    	return $this->processedData;
+    	return json_encode($this->processedData);
+    }
+
+    public function getTreatmentData($treatmentName = null)
+    {
+    	if (is_null($treatmentName)) {
+    		return $this->processedData['Patient']['Treatments'];
+    	} elseif (isset($this->processedData['Patient']['Treatments'][$treatmentName])) {
+    		return $this->processedData['Patient']['Treatments'][$treatmentName];
+    	} else {
+    		throw new Exception("Treatment type not recognized");
+    	}
     }
 }
 
@@ -60,8 +71,4 @@ $newPatient = new patientInfo();
 $newPatient->setSourceData($UnknownTable);
 $newPatient->doProcessData();
 
-// echo "<pre>";
-// print_r($newPatient->getProcessedData());
-
-// header("Content-Type: application/json; charset=UTF-8");
-echo $newPatient->getProcessedData();
+// echo $newPatient->getProcessedData();
