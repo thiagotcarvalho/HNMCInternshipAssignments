@@ -63,6 +63,20 @@ class patientInfo
     		throw new Exception("Treatment type not recognized");
     	}
     }
+
+    public function getPaymentData($treatmentName = null)
+    {
+        if (is_null($treatmentName)) {
+            foreach ($this->processedData['Patient']['Treatments'] as $treatName => $treatInfo) {
+               $paymentData[$treatName]['Payments'] = $treatInfo; 
+            }
+            return $paymentData;
+        } elseif (isset($this->processedData['Patient']['Treatments'][$treatmentName])) {
+            return $this->processedData['Patient']['Treatments'][$treatmentName]['Payments'];
+        } else {
+            throw new Exception("Treatment type not recognized");
+        }
+    }
 }
 
 // Sets up a new OBJECT
